@@ -42,11 +42,11 @@ exon=input("If some exons have low coverage, enter exon name and use comma to se
 
 def main():
     
-    for name in glob.glob('../data/1*2*.txt'):                            
+    for name in glob.glob('data/1*2*.txt'):                            
         inputfilename = str(name)
         print(inputfilename)
-        outputfilename1 = "../data/Top100_seq" + str(name[20:-4])+".txt"
-        outputfilename2 = "../data/Check_seq_all.txt"
+        outputfilename1 = "data/Top100_seq" + str(name[20:-4])+".txt"
+        outputfilename2 = "data/Check_seq_all.txt"
         
         # input one sample each time
         with open(inputfilename, 'r') as f:                         
@@ -67,7 +67,7 @@ def main():
         print(len(counted_line))
             
         # output a summary file all samples including top 100 reads for each sample
-        with open("../data/P53_Miseq_screen_genotyping.txt", 'a') as f:
+        with open("data/P53_Miseq_screen_genotyping.txt", 'a') as f:
             f.write("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n".format("Sample ID","\t","Order","\t","Sequence","\t","Reads","\t","Percentage in total reads","\t","Exon","\t","Percentage in each exon","\t","Genotype"))
             for i in range(0,300):
                 f.write("{}{}{}{}{}{}{:d}{}{:.2%}{}{}{}{:.2%}{}{}\n".format(inputfilename[2:],"\t",str(i+1),"\t",counted_line[i][0],"\t",counted_line[i][1],"\t",counted_line[i][2],"\t",counted_line[i][3],"\t",counted_line[i][4],"\t",counted_line[i][5]))  
@@ -85,7 +85,7 @@ def main():
         # output reads from low-coverage exons
         if "Exon" in exon:
             ex_seq= calculate_coverage(counted_line,exon)
-            with open("../data/exon_low_coverage.txt","w") as f:
+            with open("data/exon_low_coverage.txt","w") as f:
                 f.write("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n".format("Sample ID","\t","Order","\t","Sequence","\t","Reads","\t","Percentage in total reads","\t","Exon","\t","Percentage in each exon","\t","Genotype"))
                 for l in ex_seq:
                     f.write("{}{}{}{}{}{}{:d}{}{:.2%}{}{}{}{:.2%}{}{}\n".format(inputfilename[2:],"\t"," ", "\t",l[0],"\t",l[1],"\t",l[2],"\t",l[3],"\t",l[4],"\t",l[5]))  

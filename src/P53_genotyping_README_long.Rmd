@@ -1,0 +1,89 @@
+---
+title: "P53 Genotyping"
+author: "Bingfang Xu"
+date: "11/05/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Install trimmomatic
+
+```
+#download miniconda
+curl -LO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-MacOSX-x86_64.sh
+
+#install miniconda  
+bash Miniconda3-py39_4.9.2-MacOSX-x86_64.sh
+
+#add PATH to .bashrc   export PATH=/Users/xubr/miniconda3/bin:$PATH
+nano ~/.bashrc
+
+#source PATH
+source ~/.bashrc
+
+#test conda 
+conda env list
+conda update conda
+conda config --show channels
+conda info
+conda --version
+conda activate mP53
+
+#add channels
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+
+#install trimmamatic
+conda install -c bioconda trimmomatic
+```
+
+# Install biopython
+
+
+```
+conda install biopython
+```
+
+# Trimmatic lines
+
+```
+#paired end trimming WITHOUT trimming start seqence
+java -jar /Users/xubr/anaconda3/share/trimmomatic-0.39-2/trimmomatic.jar PE -phred33 P53-20231104-56s_S1_L001_R1_001.fastq.gz P53-20231104-56s_S1_L001_R1_001.fastq.gz P53-samples_S1_L001_R1_trimmed.fastq P53-samples_S1_L001_R1_unpair_trimmed.fastq P53-samples_S1_L001_R2_trimmed.fastq P53-samples_S1_L001_R2_unpair_trimmed.fastq TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+
+java -jar /Users/xubr/anaconda3/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/trimmomatic.jar PE -phred33 P53-20231104-56s_S1_L001_R1_001.fastq.gz P53-20231104-56s_S1_L001_R1_001.fastq.gz P53-samples_S1_L001_R1_trimmed.fastq P53-samples_S1_L001_R1_unpair_trimmed.fastq P53-samples_S1_L001_R2_trimmed.fastq P53-samples_S1_L001_R2_unpair_trimmed.fastq TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+```
+
+# Subset the fastq files
+
+```
+
+# if reads per samples is more than 100000, subset the fastq file to reduce computation time.
+/$PATH/seqtk sample -s100 P53_samples_R1_trimmed.fastq 100000 > P53_samples_R1_sub_trimmed.fastq
+/$PATH/seqtk sample -s100 P53_samples_R2_trimmed.fastq 100000 > P53_samples_R2_sub_trimmed.fastq
+
+```
+
+# Debarcode, genotyping, and mutation rate calculation
+
+```
+# input sample barcode info, then run debarcode script.
+# check if P53*trimmed.fastq are only input fastq
+python3 _0debarcode_Miseq_20190515.py
+
+
+# check the filter for mutation rate, then run genotyping script.
+# Open TrP53 snapgene, and align sequences from "Check_seq_all.txt"
+# remove low coverage samples
+python3 _1_P53_genotyped_mouseTrp53.py
+
+# input ~10bp WT, mutated sequences, and run the script of mutation rate calculation.
+python3 _2CheckSNP_mouseTrp53.py
+
+
+```

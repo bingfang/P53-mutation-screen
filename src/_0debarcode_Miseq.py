@@ -1,18 +1,29 @@
 #!/usr/local/bin/python3.6
-
+import os
+import sys
 import glob
 import re
 
-def main():
-    sample= """1CTGAAGCT2AACTCTCG	1CTGAAGCT2AACTCTCG_sample1.txt
-1CTGAAGCT2ACTATGTC	1CTGAAGCT2ACTATGTC_sample2.txt
-1CTGAAGCT2AGTAGCGT	1CTGAAGCT2AGTAGCGT_sample3.txt"""
-    files='../data/P53*_trimmed.fastq'
-    output_name=get_output_name(sample)
 
+py_script = sys.argv[0]
+sample_file = sys.argv[1]
+
+
+print(sys.argv, len(sys.argv))
+
+def main():
+    with open(sample_file, "r") as f:
+        sample=f.read().rstrip()
+    print(sample)
+    files="data/P53*trimmed.fastq"
+    print(files)
+    
+    output_name=get_output_name(sample)
+    print(output_name)
     IDR1R2=combine_ID_read(files,output_name)
     for item in output_name:
-        output = '../data/' + output_name[str(item)] 
+        output = 'data/' + output_name[str(item)] 
+        
         with open(output,"w") as f:
             for l in range(len(IDR1R2)):
                 if str(item) == IDR1R2[l][0]:

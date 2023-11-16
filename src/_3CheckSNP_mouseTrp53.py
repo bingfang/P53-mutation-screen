@@ -1,4 +1,7 @@
-#!/usr/local/bin/python3.6
+#!/usr/local/bin/python3.8
+
+#conda install -c bioconda biopython
+#conda activate mP53
 from Bio.Seq import Seq
 import glob
 
@@ -8,17 +11,17 @@ import glob
 
 def main():
     #list=["wt seq","mutated seq"]
-    list1 = ['ACCTGCACAAGC', 'ACCTGCCCAAGC']    #Exon9    
-    list2 = ['GGGAGAGACCGCCG','GGGAGAAACCGCCG'] # exon8 D275N
-    list3 = ['AGAAAATTTCCGCA','AGAAAAGTTCCGCA'] # exon8-1
-    list4 = ['GTGGGAACCTTC','GTGGGACCCTTC'] # exon8-2
-    list5 = ['TATACCACCATCC','TATACCCCCATCC'] # exon7_1
-    list6 = ['ACCATCCACTACA','ACCAGCCACTACA'] # exon7_2 reoccur
-    list7 = ['TTTTCGCCACAG','TTTTCCCCACAG'] # exon6 reoccur
-    list8 = ['AACCGCCGACC','AACCCCCGACC'] # exon7_3n
-    list9 = ['TCCACAGCCATC','TCCACACCCATC'] # exon4_s
-    
-    dic={"ex9":list1, "ex8_D275N":list2, "ex8_1":list3,"ex8_2":list4, "ex7_1":list5, "exon7_2R":list6,"exon6R":list7,"exon7_3n":list8,"exon4s":list9}
+    list1 = ['GGGAGCCGTGTCC', 'GGGAGGCGTGTCC']    #Exon5 S149R
+    list2 = ['TGAGCGCTGCTC','ATGGTGATGGTA'] # exon5end
+    list3 = ['GCCATGGCCATCT','GCCATGCCCATCT'] # exon5_1 A155P
+    list4 = ['ACGTGCCCTGTG','ACGTGGCCTGTG'] # exon5_2 C135W
+    list5 = ['CCAGTACTCTCC','CCAGTGCTCTCC'] # exon5_3 reoccur Y120C
+    list6 = ['GAGGTCGTGAGAC','GAGGTCCTGAGAC'] # exon5_4n V167L
+    list7 = ['ATTCTGCCAGCTG','ATTCTGGCAGCTG'] # exon5_5n C129W
+    list8 = ['TTCCAGACTTC','TTCCACACTTC'] # exon3s
+    list9 = ['TGAGGCCTTAG','TGAGCCCTTAG'] # exon10 A341P
+   
+    dic={"ex5_S149R":list1, "ex5end":list2, "ex5_A155P":list3,"ex5_C129W":list4,"ex5_Y120C":list5, "ex5_4V167L":list6,"ex5_5n":list7,"ex3s":list8, "ex10_A341P":list9}
    
     for i in dic:
         print(i, dic[i])
