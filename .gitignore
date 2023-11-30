@@ -1,1 +1,10 @@
-./data/
+.DS_Store
+.snakemake/
+src/.DS_Store
+src/.Rhistory
+scr/.*
+data/*
+report/*
+P53_S1_L001_R*
+info/*
+.snakemake
