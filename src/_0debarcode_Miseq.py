@@ -5,14 +5,8 @@ import glob
 import re
 
 
-py_script = sys.argv[0]
-sample_file = sys.argv[1]
-
-
-print(sys.argv, len(sys.argv))
-
 def main():
-    with open(sample_file, "r") as f:
+    with open("data/sample.txt", "r") as f:
         sample=f.read().rstrip()
     print(sample)
     files="data/P53*trimmed.fastq"
@@ -28,6 +22,8 @@ def main():
             for l in range(len(IDR1R2)):
                 if str(item) == IDR1R2[l][0]:
                     f.write("%s\t%s\t%s\n" % (IDR1R2[l][1],IDR1R2[l][2],IDR1R2[l][3]))
+    with open("data/debarcode_completed.txt","w") as f: 
+        f.write("genotyping complete\n")
     
 ####### create a dictionary with barcodes as keys and output file names as value.
 output_name={}

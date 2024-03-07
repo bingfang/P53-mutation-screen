@@ -2,13 +2,16 @@
 # snakemake -np check_target
 # snakemake check_target --cores 1
 # snakemake -np
+# snakemake --unlock 
 
 rule check_target:
     input: 
-        "data/ex5end_snp_check.txt",
         "data/P53_S1_L001_R1_trimmed.fastq",
-        "data/genetyping_completed.txt",
-        "data/exon7_2R_snp_check.txt"   
+        "data/debarcode_completed.txt",
+        "data/genetyping_coverage.txt",
+        "data/P53_Miseq_screen_genotyping.txt",
+        "data/ex5end_snp_check.txt",
+        "data/exon7_2R_snp_check.txt"
 
         
 rule trim:
@@ -30,21 +33,21 @@ rule trim:
 rule debarcode:
     input: 
         script="src/_0debarcode_Miseq.py",
-        sample_file="data/sample.txt"  
+        file="data/sample.txt"
     output: 
+        "data/debarcode_completed.txt"
     params:
-        "data/sample.txt"
     shell:
         """
-        python3 {input.script} {input.sample_file}
+        python3 {input.script}
         """
 
 
 rule genotyping:
     input: 
-        script="src/_1_P53_genotyped_mouseTrp53.py"   
+        script="src/_1_P53_genotyped_mouseTrp53_Coverage.py"   
     output:
-        "data/genetyping_completed.txt", 
+        "data/genetyping_coverage.txt", 
         "data/Check_seq_all.txt",
         "data/P53_Miseq_screen_genotyping.txt"
     params:
@@ -76,6 +79,3 @@ rule calculate_mutation_rate:
         python3 {input.script1}
         """        
         
-     
-         
-            

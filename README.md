@@ -3,6 +3,10 @@
 author: "Bingfang Xu"
 date: "07/07/2023"
 
+# update snakemake
+pip3 install --upgrade snakemake
+snakemake --version
+
 # Install trimmomatic
 
 ```

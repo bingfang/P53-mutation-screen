@@ -18,10 +18,16 @@ def main():
     list5 = ['CCAGTACTCTCC','CCAGTGCTCTCC'] # exon5_3 reoccur Y120C
     list6 = ['GAGGTCGTGAGAC','GAGGTCCTGAGAC'] # exon5_4n V167L
     list7 = ['ATTCTGCCAGCTG','ATTCTGGCAGCTG'] # exon5_5n C129W
-    list8 = ['TTCCAGACTTC','TTCCACACTTC'] # exon3s
-    list9 = ['TGAGGCCTTAG','TGAGCCCTTAG'] # exon10 A341P
-   
-    dic={"ex5_S149R":list1, "ex5end":list2, "ex5_A155P":list3,"ex5_C129W":list4,"ex5_Y120C":list5, "ex5_4V167L":list6,"ex5_5n":list7,"ex3s":list8, "ex10_A341P":list9}
+    list8 = ['ATATCCTGGTA','ATATACTGGTA'] # exon3n
+    list9 = ['TGAGGCCTTAG','TGAGCCCTTAG'] # exon10 A341
+    list10 = ['AGATATCCTGGT','AGATATACTGGT'] # exon3 
+    list11 = ['GGGCCAGTGGCCCC','GGGCCAATGGCCCC'] # exon4, GGCCCC 
+    list12 = ['CATGAGCGCTG','CATGAACGCTG'] # exon5new
+    list13 = ['GACCTATCCTTAC','GACCTTTCCTTAC'] # exon7n
+    list14 = ['ACATGTGTAATA','ACATGAGTAAT'] # exon7-mid
+    list15 = ['TAATAGCTCCTGC','TAATAGGTCCTGC'] # exon7-3
+
+    dic={"ex5_S149R":list1, "ex5end":list2, "ex5_A155P":list3,"ex5_C129W":list4,"ex5_Y120C":list5, "ex5_4V167L":list6,"ex5_5n":list7,"ex3n":list8, "ex10_A341P":list9,"ex3":list10,"ex4-GGCCC":list11, "ex5new":list12,"ex7n":list13,"ex7-mid":list14, "ex7-3":list15}
    
     for i in dic:
         print(i, dic[i])
