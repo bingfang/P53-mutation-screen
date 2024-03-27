@@ -8,7 +8,7 @@ import glob
 
 def main():
     #list=["wt seq","mutated seq"]
-    list1 = ['ACCTGCACAAGC', 'ACCTGCCCAAGC']    #Exon9    
+    list1 = ['GCCCTCCGAGTGTCA', 'GCCCTCTGAGTGTCA']    #Exon4   
     list2 = ['GGGAGAGACCGCCG','GGGAGAAACCGCCG'] # exon8 D275N
     list3 = ['AGAAAATTTCCGCA','AGAAAAGTTCCGCA'] # exon8-1
     list4 = ['GTGGGAACCTTC','GTGGGACCCTTC'] # exon8-2
@@ -18,7 +18,7 @@ def main():
     list8 = ['AACCGCCGACC','AACCCCCGACC'] # exon7_3n
     list9 = ['TCCACAGCCATC','TCCACACCCATC'] # exon4_s
     
-    dic={"ex9":list1, "ex8_D275N":list2, "ex8_1":list3,"ex8_2":list4, "ex7_1":list5, "exon7_2R":list6,"exon6R":list7,"exon7_3n":list8,"exon4s":list9}
+    dic={"ex4_1":list1, "ex8_D275N":list2, "ex8_1":list3,"ex8_2":list4, "ex7_1":list5, "exon7_2R":list6,"exon6R":list7,"exon7_3n":list8,"exon4s":list9}
    
     for i in dic:
         print(i, dic[i])
