@@ -4,9 +4,9 @@ channels:
   -base
   -bioconda
 dependencies:
-  -python=3.11.5
-  -snakemake=7.32.2
-  -trimmomatic=0.39-2
-  -biopython=
+ -python=3.11.5
+ -snakemake=7.32.2
+ -trimmomatic=0.39-2
+ -biopython=
  
 

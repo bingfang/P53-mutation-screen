@@ -8,17 +8,18 @@ import glob
 
 def main():
     #list=["wt seq","mutated seq"]
-    list1 = ['GCCCTCCGAGTGTCA', 'GCCCTCTGAGTGTCA']    #Exon4   
+    list1 = ['GCCCTCCGAGTGTCA', 'GCCCTCTGAGTGTCA']    #Exon4_f  
     list2 = ['GGGAGAGACCGCCG','GGGAGAAACCGCCG'] # exon8 D275N
-    list3 = ['AGAAAATTTCCGCA','AGAAAAGTTCCGCA'] # exon8-1
-    list4 = ['GTGGGAACCTTC','GTGGGACCCTTC'] # exon8-2
-    list5 = ['TATACCACCATCC','TATACCCCCATCC'] # exon7_1
-    list6 = ['ACCATCCACTACA','ACCAGCCACTACA'] # exon7_2 reoccur
-    list7 = ['TTTTCGCCACAG','TTTTCCCCACAG'] # exon6 reoccur
-    list8 = ['AACCGCCGACC','AACCCCCGACC'] # exon7_3n
-    list9 = ['TCCACAGCCATC','TCCACACCCATC'] # exon4_s
+    list3 = ['AGAAAATTTCCGCA','AGAAAAGTTCCGCA'] # exon8-f
+    list4 = ['GTGGGAACCTTC','GTGGGACCCTTC'] # exon8-start
+    list5 = ['TATACCACCATCC','TATACCCCCATCC'] # exon7_1f
+    list6 = ['ACCATCCACTACA','ACCAGCCACTACA'] # exon7_2f
+    list7 = ['TTTTCGCCACAG','TTTTCCCCACAG'] # exon6f
+    list8 = ['AACCGCCGACC','AACCCCCGACC'] # exon7_3f
+    list9 = ['TCCACAGCCATC','TCCACACCCATC'] # exon4_start
+    list10= ['CTCTGAGTATACCA','CTCTGATTATACCA'] # exon7_0f
     
-    dic={"ex4_1":list1, "ex8_D275N":list2, "ex8_1":list3,"ex8_2":list4, "ex7_1":list5, "exon7_2R":list6,"exon6R":list7,"exon7_3n":list8,"exon4s":list9}
+    dic={"ex4_f":list1, "ex8_D275N":list2, "ex8_f":list3,"ex8_start":list4, "ex7_1f":list5, "exon7_2f":list6,"exon6f":list7,"exon7_3f":list8,"exon4_start":list9,"exon7_0f":list10}
    
     for i in dic:
         print(i, dic[i])

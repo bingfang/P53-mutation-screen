@@ -6,9 +6,6 @@
 
 rule check_target:
     input: 
-        "data/P53_S1_L001_R1_trimmed.fastq",
-        "data/debarcode_completed.txt",
-        "data/genetyping_coverage.txt",
         "data/P53_Miseq_screen_genotyping.txt",
         "data/ex5end_snp_check.txt",
         "data/exon7_2R_snp_check.txt"
@@ -32,6 +29,8 @@ rule trim:
 
 rule debarcode:
     input: 
+        R1="data/P53_S1_L001_R1_trimmed.fastq",
+        R2="data/P53_S1_L001_R2_trimmed.fastq",
         script="src/_0debarcode_Miseq.py",
         file="data/sample.txt"
     output: 
@@ -44,12 +43,14 @@ rule debarcode:
 
 
 rule genotyping:
-    input: 
+    input:
+        debarcode="data/debarcode_completed.txt",
         script="src/_1_P53_genotyped_mouseTrp53_Coverage.py"   
     output:
         "data/genetyping_coverage.txt", 
         "data/Check_seq_all.txt",
-        "data/P53_Miseq_screen_genotyping.txt"
+        "data/P53_Miseq_screen_genotyping.txt",
+        "data/genetyping_completed.txt"
     params:
     shell:
         """
@@ -58,7 +59,9 @@ rule genotyping:
 
 
 rule calculate_common_mutation_rate:
-    input: 
+    input:
+        genotype="data/genetyping_completed.txt",
+        mutation="data/Check_seq_all.txt",
         script2="src/_3CheckSNP_mouseTrp53.py"   
     output: 
         "data/ex5end_snp_check.txt"
@@ -69,7 +72,9 @@ rule calculate_common_mutation_rate:
         """
         
 rule calculate_mutation_rate:
-    input: 
+    input:
+        genotype="data/genetyping_completed.txt", 
+        mutation="data/Check_seq_all.txt",
         script1="src/_2CheckSNP_mouseTrp53.py" 
     output: 
         "data/exon7_2R_snp_check.txt"

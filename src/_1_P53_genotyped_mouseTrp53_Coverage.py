@@ -92,7 +92,9 @@ def main():
             f.write(inputfilename + "\n")
             for key in exon_reads:  
                 f.write('{}\t{:.1f}\n'.format(key, exon_reads[key]))
-  
+    with open("data/genetyping_completed.txt","w") as f: 
+        f.write("genotyping complete\n")
+
 
 # abstract read1 and read2 and put into seq_read12 list.
 # create a set with only unique reads.

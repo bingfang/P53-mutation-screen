@@ -89,9 +89,9 @@ def main():
                 f.write("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n".format("Sample ID","\t","Order","\t","Sequence","\t","Reads","\t","Percentage in total reads","\t","Exon","\t","Percentage in each exon","\t","Genotype"))
                 for l in ex_seq:
                     f.write("{}{}{}{}{}{}{:d}{}{:.2%}{}{}{}{:.2%}{}{}\n".format(inputfilename[2:],"\t"," ", "\t",l[0],"\t",l[1],"\t",l[2],"\t",l[3],"\t",l[4],"\t",l[5]))  
-        else:
-            with open("data/genetyping_completed.txt","w") as f: 
-                f.write("genotyping complete\n")
+        
+    with open("data/genetyping_completed.txt","w") as f: 
+        f.write("genotyping complete\n")
   
 
 # abstract read1 and read2 and put into seq_read12 list.
