@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bingfang Xu" />
 
-<meta name="date" content="2023-07-07" />
+<meta name="date" content="2024-04-22" />
 
 <title>P53 mutation screen</title>
 
@@ -358,11 +358,25 @@ display: none;
 
 <h1 class="title toc-ignore">P53 mutation screen</h1>
 <h4 class="author">Bingfang Xu</h4>
-<h4 class="date">07/07/2023</h4>
+<h4 class="date">04/22/2024</h4>
 
 </div>
 
 
+<div id="run-snakemake-pipeline" class="section level1">
+<h1>Run snakemake pipeline</h1>
+<pre><code># dry run
+snakemake --dry-run check_target
+snakemake -np check_target
+
+# run
+snakemake check_target --cores 1
+# snakemake -np
+
+# unlock
+# snakemake --unlock
+</code></pre>
+</div>
 <div id="install-trimmomatic" class="section level1">
 <h1>Install trimmomatic</h1>
 <pre><code>#test conda 
@@ -396,8 +410,9 @@ java -jar /$MyPATH/trimmomatic-0.39-2/trimmomatic.jar PE -phred33 P53-samples_S1
 /$MyPATH2/seqtk sample -s100 P53_samples_R2_trimmed.fastq 500000 &gt; P53_samples_R2_sub_trimmed.fastq
 </code></pre>
 </div>
-<div id="debarcode-genotyping-and-mutation-rate-calculation" class="section level1">
-<h1>Debarcode, genotyping, and mutation rate calculation</h1>
+<div id="run-python-scripts-one-by-one" class="section level1">
+<h1>Run python scripts one by one</h1>
+<p>Debarcode, genotyping, and mutation rate calculation</p>
 <pre><code># cd to the script dir
 cd $MyPATH3/src
 

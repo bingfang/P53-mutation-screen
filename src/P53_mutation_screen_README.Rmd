@@ -1,12 +1,27 @@
 ---
 title: "P53 mutation screen"
 author: "Bingfang Xu"
-date: "07/07/2023"
+date: "04/22/2024"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+# Run snakemake pipeline
+
+```
+# dry run
+snakemake --dry-run check_target
+snakemake -np check_target
+
+# run
+snakemake check_target --cores 1
+# snakemake -np
+
+# unlock
+# snakemake --unlock
+
 ```
 
 # Install trimmomatic
@@ -50,7 +65,9 @@ java -jar /$MyPATH/trimmomatic-0.39-2/trimmomatic.jar PE -phred33 P53-samples_S1
 
 ```
 
-# Debarcode, genotyping, and mutation rate calculation
+# Run python scripts one by one
+
+Debarcode, genotyping, and mutation rate calculation
 
 ```
 # cd to the script dir
