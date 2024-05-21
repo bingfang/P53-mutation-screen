@@ -22,6 +22,9 @@ snakemake check_target --cores 1
 # unlock
 # snakemake --unlock
 
+# analyze workflow
+#snakemake --lint
+
 ```
 
 # Install trimmomatic
