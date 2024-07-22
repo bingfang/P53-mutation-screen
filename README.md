@@ -5,10 +5,9 @@ date: "04/22/2024"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 # Run snakemake pipeline
+
+## Check environment.yml, if all tools are installed, change input files names, build sample.txt file, and follow the instruction below.
 
 ```
 # dry run
@@ -17,7 +16,7 @@ snakemake -np check_target
 
 # run
 snakemake check_target --cores 1
-# snakemake -np
+
 
 # unlock
 # snakemake --unlock
@@ -27,7 +26,9 @@ snakemake check_target --cores 1
 
 ```
 
-# Install trimmomatic
+# Run scripts line by line.
+
+## Install trimmomatic
 
 ```
 #test conda 
@@ -43,14 +44,14 @@ conda config --add channels conda-forge
 conda install -c bioconda trimmomatic
 ```
 
-# Install biopython
+## Install biopython
 
 ```
 conda install biopython
 
 ```
 
-# Trimmatic commend lines
+## Trimmatic commend lines
 
 ```
 #paired end trimming WITHOUT trimming start seqence
@@ -59,7 +60,7 @@ java -jar /$MyPATH/trimmomatic-0.39-2/trimmomatic.jar PE -phred33 P53-samples_S1
 
 ```
 
-# Subset the fastq files (optional)
+## Subset the fastq files (optional)
 
 ```
 # if reads per samples is more than 100000, subset the fastq file to reduce computation time.
@@ -68,7 +69,7 @@ java -jar /$MyPATH/trimmomatic-0.39-2/trimmomatic.jar PE -phred33 P53-samples_S1
 
 ```
 
-# Run python scripts one by one
+## Run python scripts one by one
 
 Debarcode, genotyping, and mutation rate calculation
 
@@ -80,7 +81,11 @@ cd $MyPATH3/src
 python3 _0debarcode_Miseq.py
 
 # check the filter for mutation rate, then run genotyping script.
-python3 _1_P53_genotyped_mouseTrp53.py
+python3 _1_P53_genotyped_mouseTrp53_Coverage.py
+
+
+# check common mouse P53 mutation rate
+python3 _3CheckSNP_mouseTrp53.py
 
 # Open Trp53 snapGene, and align sequences from "Check_seq_all.txt" 
 # input ~10bp WT, mutated sequences, and run the script of mutation rate calculation.

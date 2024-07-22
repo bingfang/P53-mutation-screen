@@ -2,7 +2,10 @@
 # snakemake -np check_target
 # snakemake check_target --cores 1
 # snakemake -np
-# snakemake --unlock 
+# snakemake --unlock
+
+# check input file name
+# built sample.txt file 
 
 rule check_target:
     input: 
